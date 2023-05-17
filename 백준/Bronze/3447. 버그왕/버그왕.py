@@ -1,6 +1,5 @@
 import sys
 code = sys.stdin.readlines()
-out = list()
 
 for c in code:
   while True:
