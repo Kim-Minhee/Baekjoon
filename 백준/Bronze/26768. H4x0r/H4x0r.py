@@ -1,0 +1,7 @@
+word = input()
+word = word.replace('a', '4')
+word = word.replace('e', '3')
+word = word.replace('i', '1')
+word = word.replace('o', '0')
+word = word.replace('s', '5')
+print(word)
