@@ -1,7 +1,8 @@
-n = int(input())
+import sys
+
 cnt_a = cnt_b = 0
-for _ in range(n):
-  a, b = map(int, input().split())
+for _ in range(int(sys.stdin.readline())):
+  a, b = map(int, sys.stdin.readline().split())
   if a>b:
     cnt_a += 1
   elif b>a:
