@@ -1,9 +1,19 @@
-from datetime import date
-def numOfDays(date1, date2):
-    return (date2 - date1).days
+# 틀림...
+month = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
 while 1:
-    d,m,y=map(int, input().split())
-    if d==0 and m==0 and y==0 :break
-    date1 = date(y, 1, 1)
-    date2 = date(y, m, d)
-    print(numOfDays(date1, date2)+1)
+  # 입력
+  D, M, Y = map(int, input().split())
+
+  # 풀이
+  if D+M+Y==0: break
+
+  d = D
+  d += sum(month[:M])
+  if (Y%4==0 and Y%100!=0) or Y%400==0:
+    if M>2:
+      d += 1
+  
+
+  # 출력
+  print(d)
