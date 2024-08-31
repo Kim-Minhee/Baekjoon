@@ -1,3 +1,5 @@
+import sys
+
 # 함수
 def hsSeq(num):
   max_num = num
@@ -11,8 +13,8 @@ def hsSeq(num):
   return max_num
 
 # 입력
-for _ in range(int(input())):
-  N = int(input())
+for _ in range(int(sys.stdin.readline())):
+  N = int(sys.stdin.readline())
 
   # 풀이
   r = hsSeq(N)
