@@ -1,9 +1,11 @@
-N, M = map(int, input().split())
-L = list(map(int, input().split()))
+import sys
+
+N, M = map(int, sys.stdin.readline().split())
+L = list(map(int, sys.stdin.readline().split()))
 
 cnt = 0
 for _ in range(N-1):
-  K = list(map(int, input().split()))
+  K = list(map(int, sys.stdin.readline().split()))
 
   s = 0
   for i in range(M):
