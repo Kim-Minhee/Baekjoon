@@ -1,8 +1,8 @@
-import re
+import sys, re
 
 r = ''
-for _ in range(int(input())):
-  S = input()
+for _ in range(int(sys.stdin.readline())):
+  S = sys.stdin.readline().strip()
   if r=='' and len(S)<=10:
     s1 = re.sub(r'[0-9]', '', S)
     s2 = re.sub(r'[^A-Z]', '', S)
