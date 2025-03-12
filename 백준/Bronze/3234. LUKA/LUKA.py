@@ -2,26 +2,34 @@ X, Y = (map(int, input().split()))
 K = int(input())
 M = input()
 
-luka = [(X-1, Y+1), (X, Y+1), (X+1, Y+1),
-        (X-1, Y), (X, Y), (X+1, Y),
-        (X-1, Y-1), (X, Y-1), (X+1, Y-1)]
+luka = {
+    (X-1, Y+1), (X, Y+1), (X+1, Y+1),
+    (X-1, Y), (X, Y), (X+1, Y),
+    (X-1, Y-1), (X, Y-1), (X+1, Y-1)
+}
 
-ttm, time = [0, 0], []
+ttm_x, ttm_y = 0, 0
+time = []
 
-if tuple(ttm) in luka:
+if (ttm_x, ttm_y) in luka:
     time.append(0)
 
+direction = {
+    'I': (1, 0),
+    'S': (0, 1),
+    'Z': (-1, 0),
+    'J': (0, -1)
+}
+
 for i, move in enumerate(M):
-  if move=='I': ttm[0] += 1
-  elif move=='S': ttm[1] += 1
-  elif move=='Z': ttm[0] -= 1
-  elif move=='J': ttm[1] -= 1
+    dx, dy = direction[move]
+    ttm_x += dx
+    ttm_y += dy
 
-  if tuple(ttm) in luka:
-    time.append(i+1)
+    if (ttm_x, ttm_y) in luka:
+        time.append(i+1)
 
-if len(time)==0:
-  print(-1)
+if not time:
+    print(-1)
 else:
-  for t in time:
-    print(t)
+    print('\n'.join(map(str, time)))
