@@ -1,10 +1,10 @@
-B, W = map(int, input().split())
-if B<1 and W<1:
-  print('Impossible')
-else:
-  a = max(B, W)
-  b = min(B, W)
-  if a!=b and a-b>1: a = b+1
+# https://limepencil.tistory.com/9
 
-  r = int((a+b)**(1/2))
-  print(r)
+n, m = sorted(map(int, input().split()))
+if m==0:
+    print('Impossible')
+else:
+    if n==m:
+        print(int((n*2)**0.5))
+    else:
+        print(int((n*2+1)**0.5))
