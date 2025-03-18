@@ -1,14 +1,13 @@
+# GPT
 while True:
-  T = int(input())
-  if T==0: break
+    N = int(input())
+    if N == 0:
+        break
 
-  lotto_num = [0]*49
-  for _ in range(T):
-    N = list(map(int, input().split()))
-    for n in N:
-      if not lotto_num[n-1]:
-        lotto_num[n-1] = 1
-  if sum(lotto_num)==49:
-    print('Yes')
-  else:
-    print('No')
+    lotto_set = set()
+
+    for _ in range(N):
+        ticket = map(int, input().split())
+        lotto_set.update(ticket)
+
+    print('Yes' if len(lotto_set)==49 else 'No')
