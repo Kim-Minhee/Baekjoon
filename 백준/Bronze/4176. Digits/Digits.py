@@ -1,10 +1,15 @@
+# GPT
 while True:
-  X = input()
-  if X=='END': break
-  else: X = int(X)
+    X = input()
+    if X == 'END':
+        break
 
-  i = 1
-  while X!=1:
-    X = int(len(str(X)))
-    i += 1
-  print(i)
+    i = 1
+    prev = X
+    while True:
+        now = str(len(prev))
+        if now==prev:
+            print(i)
+            break
+        prev = now
+        i += 1
