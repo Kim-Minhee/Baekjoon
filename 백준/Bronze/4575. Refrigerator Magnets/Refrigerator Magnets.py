@@ -1,14 +1,9 @@
-alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
+# GPT
 while True:
-  S = input()
-  if S=='END': break
+    S = input()
+    if S == 'END':
+        break
 
-  check = True
-  for i in range(26):
-    if S.count(alphabet[i])>1:
-      check = False
-      break
-  
-  if check:
-    print(S)
+    letters = [ch for ch in S if ch.isalpha()]
+    if len(set(letters))==len(letters):
+        print(S)
