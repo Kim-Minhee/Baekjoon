@@ -1,24 +1,17 @@
+# GPT
 for _ in range(int(input())):
-  N = int(input())
+    N = int(input())
+    min_area = float('inf')
 
-  if int(N**(1/3))==(N**(1/3)):
-    print(int(N**(1/3))**2 * 6)
-  else:
-    possible = []
-    sum_abc = []
+    for a in range(1, int(N**(1/3))+2):
+        if N%a!=0:
+            continue
+        bc = N//a
+        for b in range(1, int((bc)**0.5) + 2):
+            if bc%b!=0:
+                continue
+            c = bc//b
+            surface_area = 2*(a*b + b*c + c*a)
+            min_area = min(min_area, surface_area)
 
-    for a in range(1, N):
-      for b in range(1, N//a+1):
-        for c in range(1, N//(a*b)+1):
-          if a*b*c==N:
-            p = sorted([a, b, c])
-            if p not in possible:
-              possible.append(p)
-              sum_abc.append(sum(p))
-            break
-
-    min_sum = min(sum_abc)
-    min_index = sum_abc.index(min_sum)
-    a, b, c = possible[min_index]
-
-    print(2*(a*b + b*c + c*a))
+    print(min_area)
