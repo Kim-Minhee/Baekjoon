@@ -1,32 +1,17 @@
-i = 1
+# GPT
+case = 1
 while True:
-  N = int(input())
-  if N==0: break
+    N = int(input())
+    if N == 0:
+        break
 
-  lst = list(map(int, input().split()))
-
-  chk = True
-  iter = 0
-  while len(set(lst))!=1:
-    iter += 1
-
-    new_lst = []
-    for index in range(N):
-      if index!=N-1:
-        new_lst.append(abs(lst[index]-lst[index+1]))
-      else:
-        new_lst.append(abs(lst[index]-lst[0]))
-
-    if iter>1000:
-      chk = False
-      break
+    lst = list(map(int, input().split()))
+    for iteration in range(1, 1001):
+        if len(set(lst)) == 1:
+            print(f'Case {case}: {iteration - 1} iterations')
+            break
+        lst = [abs(a - b) for a, b in zip(lst, lst[1:] + lst[:1])]
     else:
-      lst = new_lst
+        print(f'Case {case}: not attained')
 
-
-  if chk:
-    print(f'Case {i}: {iter} iterations')
-  else:
-    print(f'Case {i}: not attained')
-
-  i += 1
+    case += 1
