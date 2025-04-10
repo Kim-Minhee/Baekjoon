@@ -1,17 +1,15 @@
+# GPT
 while True:
-  N = int(input())
-  if N==0: break
+    N = int(input())
+    if N == 0:
+        break
 
-  n = 1
-  while True:
-    sum_n = n*(n+1)//2
-    if sum_n>=N:
-      break
-    n += 1
+    n = 1
+    while n*(n+1)//2 < N:
+        n += 1
 
-  r = 0
-  for i in range(1, n):
-    r += i**2
-  r += n*(N-((n-1)*n//2))
+    used_days = (n-1)*n//2
+    total_coins = (n-1)*n*(2*n-1)//6  # 1^2 + 2^2 + ... + (n-1)^2
+    total_coins += (N-used_days)*n
 
-  print(N, r)
+    print(N, total_coins)
