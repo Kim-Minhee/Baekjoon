@@ -1,26 +1,30 @@
+# GPT
 while True:
-  N, M = map(int, input().split())
-  if N==M==0: break
-
-  taro, hanaco = [], []
-  for _ in range(N):
-    taro.append(int(input()))
-  for _ in range(M):
-    hanaco.append(int(input()))
-  taro.sort()
-  hanaco.sort()
-
-  posible, escape = False, False
-  for t in taro:
-    for h in hanaco:
-      if sum(taro)-t+h==sum(hanaco)-h+t:
-        posible = True
-        escape = True
+    N, M = map(int, input().split())
+    if N == 0 and M == 0:
         break
-    if escape:
-      break
 
-  if posible:
-    print(t, h)
-  else:
-    print(-1)
+    taro = [int(input()) for _ in range(N)]
+    hanako = [int(input()) for _ in range(M)]
+
+    sum_taro = sum(taro)
+    sum_hanako = sum(hanako)
+    diff = sum_taro - sum_hanako
+
+    if diff % 2 != 0:
+        print(-1)
+        continue
+    diff //= 2
+
+    hanako_set = set(hanako)
+    answer = None
+    for t in taro:
+        h = t - diff
+        if h in hanako_set:
+            if answer is None or t + h < sum(answer):
+                answer = (t, h)
+
+    if answer:
+        print(*answer)
+    else:
+        print(-1)
