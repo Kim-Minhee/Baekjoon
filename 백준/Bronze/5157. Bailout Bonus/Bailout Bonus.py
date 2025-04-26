@@ -1,14 +1,16 @@
+# GPT
 K = int(input())
 for k in range(1, K+1):
-  C, B, N, R = map(int, input().split())
-  B_LIST = list(map(int, input().split()))
-  N_LIST = [tuple(map(int, input().split())) for _ in range(N)]
+    C, B, N, R = map(int, input().split())
+    B_SET = set(map(int, input().split()))
+    total_tax = 0
 
-  total_tax = 0
-  for (c, p) in N_LIST:
-    if c in B_LIST:
-      total_tax += int(p*(R/100))
+    for _ in range(N):
+        c, p = map(int, input().split())
+        if c in B_SET:
+            total_tax += (p * R) // 100
 
-  if k!=1: print()
-  print(f'Data Set {k}:')
-  print(total_tax)
+    if k != 1:
+        print()
+    print(f'Data Set {k}:')
+    print(total_tax)
