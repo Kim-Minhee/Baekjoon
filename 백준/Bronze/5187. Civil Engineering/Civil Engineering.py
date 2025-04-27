@@ -1,3 +1,7 @@
+# GPT
+import sys
+input = sys.stdin.readline
+
 K = int(input())
 for k in range(1, K+1):
   M, N = map(int, input().split())
