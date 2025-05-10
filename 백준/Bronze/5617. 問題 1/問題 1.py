@@ -1,21 +1,25 @@
+# GPT
 tris = [0, 0, 0, 0]
-is_existing = True
-try:
-  while True:
-    lines = list(map(int, input().split()))
-    if is_existing:
-      lines.sort()
-      a, b, c = lines[0], lines[1], lines[2]
-      if a+b<=c:
-        is_existing = False
-      else:
-        tris[0] += 1
-        d = a**2 + b**2
-        if d==c**2: tris[1] += 1
-        elif d>c**2: tris[2] +=1
-        else: tris[3] += 1
 
-      if not is_existing:
-        print(*tris)
-except:
-  exit()
+try:
+    while True:
+        values = list(map(int, input().split()))
+        values.sort()
+        a, b, c = values
+
+        if a + b <= c:
+            break
+
+        tris[0] += 1
+        s = a ** 2 + b ** 2
+        if s == c ** 2:
+            tris[1] += 1
+        elif s > c ** 2:
+            tris[2] += 1
+        else:
+            tris[3] += 1
+
+except EOFError:
+    pass
+
+print(*tris)
