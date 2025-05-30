@@ -1,8 +1,7 @@
+# Gemini
 N, P = map(int, input().split())
 
-r = str(N**P)
-if len(r)>70:
-  for i in range(0, len(r), 70):
-    print(r[i:i+70])
-else:
-  print(r)
+result_str = str(N**P)
+
+for i in range(0, len(result_str), 70):
+    print(result_str[i:i+70])
