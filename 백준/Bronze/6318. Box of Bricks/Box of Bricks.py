@@ -1,3 +1,4 @@
+# GPT 4o
 i = 0
 while True:
   N = int(input())
@@ -7,10 +8,7 @@ while True:
   H = list(map(int, input().split()))
   h_avg = sum(H)//N
   
-  r = 0
-  for h in H:
-    if h>h_avg:
-      r += h-h_avg
+  r = sum(h - h_avg for h in H if h > h_avg)
   
   print(f'Set #{i}')
   print(f'The minimum number of moves is {r}.')
