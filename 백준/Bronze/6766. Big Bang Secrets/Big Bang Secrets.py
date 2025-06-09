@@ -1,7 +1,9 @@
+# Gemini 2.5 Pro
+UPPERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' # 상수로 외부에 선언
+
 def decoding(alphabet, s):
-  uppers = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  i = (uppers.index(alphabet)-s)%26
-  return uppers[i]
+    i = (UPPERS.index(alphabet) - s) % 26
+    return UPPERS[i]
 
 K, W = int(input()), input()
 
