@@ -1,21 +1,15 @@
-A, B = int(input()), int(input())
+# GPT 4o
+A = int(input())
+B = int(input())
 
-square_list = []
+count = 0
 i = 1
 while True:
-  if i**2>=A and i**2<=B:
-    square_list.append(i**2)
-  elif i**2>B:
-    break
-  i += 1
+    sixth = i ** 6
+    if sixth > B:
+        break
+    if sixth >= A:
+        count += 1
+    i += 1
 
-cube_cnt = 0
-j = 1
-while True:
-  if j**3 in square_list:
-    cube_cnt += 1
-  if j**3>B:
-    break
-  j += 1
-
-print(cube_cnt)
+print(count)
