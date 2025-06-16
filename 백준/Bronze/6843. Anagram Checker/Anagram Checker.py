@@ -1,10 +1,6 @@
-# GPT 4o
-from collections import Counter
+S1, S2 = list(''.join(input().split())), list(''.join(input().split()))
 
-S1 = Counter(input().replace(' ', ''))
-S2 = Counter(input().replace(' ', ''))
+S1.sort()
+S2.sort()
 
-if S1 == S2:
-    print('Is an anagram.')
-else:
-    print('Is not an anagram.')
+print('Is an anagram.' if S1==S2 else 'Is not an anagram.')
