@@ -1,16 +1,13 @@
+# GPT 4o
 C, R = map(int, input().split())
+x, y = 0, 0
 
-current_x, current_y = 0, 0
 while True:
-  X, Y = map(int, input().split())
-  if X==Y==0: break
+    dx, dy = map(int, input().split())
+    if dx == 0 and dy == 0:
+        break
 
-  current_x += X
-  if current_x<0: current_x = 0
-  elif current_x>C: current_x = C
+    x = max(0, min(C, x + dx))
+    y = max(0, min(R, y + dy))
 
-  current_y += Y
-  if current_y<0: current_y = 0
-  elif current_y>R: current_y = R
-
-  print(current_x, current_y)
+    print(x, y)
