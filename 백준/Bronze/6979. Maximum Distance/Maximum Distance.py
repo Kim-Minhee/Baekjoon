@@ -1,16 +1,21 @@
-for k in range(int(input())):
-  N = int(input())
-  X = list(map(int, input().split()))
-  Y = list(map(int, input().split()))
+# GPT 4o
+t = int(input())
 
-  dist = 0
-  for i in range(N-1):
-    for j in range(i+1, N):
-      if Y[j]>=X[i]:
-        dist = max(dist, j-i)
-      else:
-        break
+for _ in range(t):
+    n = int(input())
+    X = list(map(int, input().split()))
+    Y = list(map(int, input().split()))
 
-  if k>0:
-    print()
-  print(f'The maximum distance is {dist}')
+    max_dist = 0
+    i, j = 0, 0
+
+    while i < n and j < n:
+        if j < i:
+            j = i
+        elif Y[j] >= X[i]:
+            max_dist = max(max_dist, j - i)
+            j += 1
+        else:
+            i += 1
+
+    print(f"The maximum distance is {max_dist}\n")
