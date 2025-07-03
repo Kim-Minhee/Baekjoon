@@ -1,32 +1,27 @@
-def count_black(nono):
-  blacks = list(nono.split('.'))
-  r = []
-  for black in blacks:
-    if black!='':
-      r.append(str(len(black)))
-  if r==[]:
-    r = ['0']
-  return r
+# GPT 4o
+def count_blocks(line):
+    counts = []
+    count = 0
+    for ch in line:
+        if ch == '#':
+            count += 1
+        else:
+            if count > 0:
+                counts.append(count)
+                count = 0
+    if count > 0:
+        counts.append(count)
+    return counts if counts else [0]
 
+# 입력
 N, M = map(int, input().split())
+grid = [input().strip() for _ in range(N)]
 
-nonogramm = []
-n_results = []
-for _ in range(N):
-  NONO = input()
-  n_results.append(count_black(NONO))
-  nonogramm.append(NONO)
+# 행 정보
+for row in grid:
+    print(' '.join(map(str, count_blocks(row))))
 
-for n in n_results:
-  print(' '.join(n))
-
-m_nonogramm = []
-for i in range(M):
-  nono = ''
-  for j in range(N):
-    nono += nonogramm[j][i]
-  m_nonogramm.append(nono)
-
-for nono in m_nonogramm:
-  r = count_black(nono)
-  print(' '.join(r))
+# 열 정보
+for col in range(M):
+    column = [grid[row][col] for row in range(N)]
+    print(' '.join(map(str, count_blocks(column))))
