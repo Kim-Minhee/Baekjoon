@@ -1,18 +1,27 @@
-def time(h, m):
-  return h*60+m
+# GPT 4o
+def to_minutes(h, m):
+    return h * 60 + m
 
-time_start = time(9, 0)
-time_end = time(20, 59)
+def to_time(minutes):
+    h = minutes // 60
+    m = minutes % 60
+    return h, m
 
-for _ in range(int(input())):
-  H_S, M_S, H_E, M_E = map(int, input().split())
-  start = time(H_S, M_S)
-  end = time(H_E, M_E)
-  
-  time_start = max(time_start, start)
-  time_end = min(time_end, end)
-if time_start<time_end:
-  print('TAIP')
-  print(time_start//60, time_start%60, time_end//60, time_end%60)
+N = int(input())
+start_max = 9 * 60     # 하루 시작 시간: 09:00
+end_min = 20 * 60 + 59 # 하루 종료 시간: 20:59
+
+for _ in range(N):
+    h1, m1, h2, m2 = map(int, input().split())
+    start = to_minutes(h1, m1)
+    end = to_minutes(h2, m2)
+    start_max = max(start_max, start)
+    end_min = min(end_min, end)
+
+if start_max < end_min:
+    h1, m1 = to_time(start_max)
+    h2, m2 = to_time(end_min)
+    print("TAIP")
+    print(h1, m1, h2, m2)
 else:
-  print('NE')
+    print("NE")
