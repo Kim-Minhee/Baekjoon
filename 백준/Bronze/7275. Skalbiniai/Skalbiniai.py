@@ -1,18 +1,27 @@
+# GPT 4o
+import math
+
+# 입력 처리
 N, K, M = map(int, input().split())
 
-num_by_group = []
-for _ in range(K):
-  num_by_group.append(list(map(int, input().split())))
+# 색상 번호는 1부터 시작하므로 인덱스를 맞추기 위해 +1 크기로 초기화
+groups = [[] for _ in range(K)]
+for i in range(K):
+    data = list(map(int, input().split()))
+    groups[i] = data[1:]  # 그룹 내 색상 목록만 저장
 
-cnt_by_group = [0]*K
+# 색상별 옷 개수 입력
 D = list(map(int, input().split()))
-for idx, num in enumerate(num_by_group):
-  for n in num[1:]:
-    cnt_by_group[idx] += D[n-1]
+D = [0] + D  # 색상 번호 1부터 시작하므로 인덱스 보정
 
-r = 0
-for cnt in cnt_by_group:
-  r += cnt//M
-  if cnt%M>0:
-    r += 1
-print(r)
+# 총 세탁 횟수 계산
+total_washes = 0
+for group in groups:
+    clothes = 0
+    for color in group:
+        clothes += D[color]
+    washes = math.ceil(clothes / M)
+    total_washes += washes
+
+# 결과 출력
+print(total_washes)
