@@ -1,15 +1,13 @@
-while True:
-  S = input()
-  if S=='#': break
+# GPT 4o
+def jumble_word(word):
+    if len(word) <= 3:
+        return word
+    return word[0] + word[1:-1][::-1] + word[-1]
 
-  jumbled = []
-  for word in S.split():
-    if len(word)<3:
-      jumbled_word = word
-    else:
-      jumbled_word = word[0]
-      jumbled_word += word[-2:0:-1]
-      jumbled_word += word[-1]
-    jumbled.append(jumbled_word)
-  
-  print(' '.join(jumbled))
+while True:
+    line = input()
+    if line == "#":
+        break
+    words = line.split()
+    jumbled = [jumble_word(word) for word in words]
+    print(" ".join(jumbled))
