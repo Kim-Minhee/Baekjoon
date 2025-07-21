@@ -1,4 +1,3 @@
-# Gemini 2.5 Pro
 import sys
 
 def solve_wardrobe_problem():
