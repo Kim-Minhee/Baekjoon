@@ -1,14 +1,17 @@
-X, S = map(int, input().split())
+# GPT 4o
+x, s = map(int, input().split())
 
-x, s, j = X, S, 0
-while True:
-  if x<=0:
-    break
-  if s<=1:
-    j += x
-    break
-  j += 1
-  x -= s
-  s = int(s/2)
+jumps = 0
+distance = 0
+jump_length = s
 
-print(j)
+while distance < x and jump_length > 1:
+    distance += jump_length
+    jump_length //= 2
+    jumps += 1
+
+# 남은 거리만큼 1짜리 점프를 더함
+if distance < x:
+    jumps += (x - distance)
+
+print(jumps)
