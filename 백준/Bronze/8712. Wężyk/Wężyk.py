@@ -1,11 +1,12 @@
-N = int(input())
+# GPT 4o
+n = int(input())
 
-is_even = False
-for n in range(1, N**2+1, N):
-  zigzag = [str(j) for j in range(n, n+N)]
-  if is_even:
-    zigzag.reverse()
-    is_even = False
-  else:
-    is_even = True
-  print(' '.join(zigzag))
+for i in range(n):
+    row_start = i * n + 1
+    row_end = (i + 1) * n + 1
+    row = list(range(row_start, row_end))
+    
+    if i % 2 == 1:  # 짝수 번째 줄 (인덱스 기준, 실제로는 홀수 줄): 오른쪽 → 왼쪽
+        row.reverse()
+    
+    print(' '.join(map(str, row)))
