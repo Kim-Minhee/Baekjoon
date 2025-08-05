@@ -1,14 +1,17 @@
-N = int(input())
-A = list(map(int, input().split()))
+# GPT 4o
+n = int(input())
+a = list(map(int, input().split()))
 
-pears, apples = [], []
-for i, a in enumerate(A):
-    if a==0:
-        pears.append(i)
-    else:
-        apples.append(i)
+# 가장 왼쪽, 오른쪽 grusza(0) 위치
+left_pear = a.index(0)
+right_pear = n - 1 - a[::-1].index(0)
 
-dist1 = abs(pears[0]-apples[-1])
-dist2 = abs(pears[-1]-apples[0])
+# 가장 왼쪽, 오른쪽 jabłoń(1) 위치
+left_apple = a.index(1)
+right_apple = n - 1 - a[::-1].index(1)
 
-print(max(dist1, dist2))
+# 가능한 두 거리 중 큰 것
+d1 = abs(right_apple - left_pear)
+d2 = abs(right_pear - left_apple)
+
+print(max(d1, d2))
