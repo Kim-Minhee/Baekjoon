@@ -1,13 +1,14 @@
-while True:
-    try:
-        N, W, D, M = map(int, input().split())
+# GPT 5
+import sys
 
-        golden_cnt = (N * (N - 1)) // 2
-        golden_weight = W * golden_cnt
-        if golden_weight == M:
-            print(N)
-        else:
-            r = (golden_weight - M) // D
-            print(r)
-    except:
-        break
+for line in sys.stdin:
+    if not line.strip():
+        continue
+    N, w, d, measured = map(int, line.split())
+    S = (N - 1) * N // 2  # 총 코인 개수
+    ideal = S * w         # 전부 정상 무게라면
+    diff = (ideal - measured) // d
+    if diff == 0:
+        print(N)
+    else:
+        print(diff)
