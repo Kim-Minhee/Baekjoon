@@ -1,19 +1,24 @@
-def rounding(is_clockwise, depart, arrive):
-    if is_clockwise:
-        return (depart - arrive + 40) % 40
-    else:
-        return (arrive - depart + 40) % 40
+# GPT 5
+import sys
 
-one_tick = 360//40
-
-while True:
-    S0, S1, S2, S3 = map(int, input().split())
-    if S0 + S1 + S2 + S3 == 0:
+for line in sys.stdin:
+    p, a, b, c = map(int, line.split())
+    if p == a == b == c == 0:
         break
 
-    r = 3 * 40 * one_tick
-    r += rounding(True, S0, S1) * one_tick
-    r += rounding(False, S1, S2) * one_tick
-    r += rounding(True, S2, S3) * one_tick
+    total = 0
 
-    print(r)
+    # Step 1: 두 바퀴(720도)
+    total += 720
+    # + p → a (cw)
+    total += ((p - a) % 40) * 9
+
+    # Step 2: 한 바퀴(360도)
+    total += 360
+    # + a → b (ccw)
+    total += ((b - a) % 40) * 9
+
+    # Step 3: b → c (cw)
+    total += ((b - c) % 40) * 9
+
+    print(total)
