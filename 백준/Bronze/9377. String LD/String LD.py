@@ -1,25 +1,32 @@
-def string_id(word):
-    return word[1:]
+# GPT 5
+def main():
+    import sys
+    input = sys.stdin.readline
 
-while True:
-    N = int(input())
-    if N == 0:
-        break
-
-    words = set()
-    for _ in range(N):
-        W = input()
-        words.add(W)
-
-    cnt = 0
     while True:
-        deleted = []
-        for word in words:
-            if len(word) != 1:
-                deleted.append(string_id(word))
-        words = set(deleted)
-        if len(words) != N:
+        n = int(input().strip())
+        if n == 0:  # 입력 종료
             break
-        cnt += 1
 
-    print(cnt)
+        words = [input().strip() for _ in range(n)]
+        steps = 0
+
+        while True:
+            # 다음 단계 단어 생성
+            new_words = [w[1:] for w in words]
+
+            # 조건 확인
+            if "" in new_words:  # 빈 문자열 생성됨
+                break
+            if len(set(new_words)) < len(new_words):  # 중복 발생
+                break
+
+            # 아직 조건 성립X → 단계 추가
+            steps += 1
+            words = new_words
+
+        print(steps)
+
+
+if __name__ == "__main__":
+    main()
