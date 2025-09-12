@@ -1,23 +1,20 @@
-# GPT 5
 import sys
+input = sys.stdin.readline
+
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
 while True:
-    line = sys.stdin.readline()
-    if not line:
+    D, M, Y = map(int, input().split())
+    if D == M == Y == 0:
         break
-    d, m, y = map(int, line.split())
-    if d == 0 and m == 0 and y == 0:
-        break
+    I = input().strip()
 
-    S = (d + m + y) % 25 + 1
-    message = sys.stdin.readline().rstrip("\n")
-
-    decrypted = []
-    for c in message:
-        if 'a' <= c <= 'z':
-            shifted = (ord(c) - ord('a') - S) % 26 + ord('a')
-            decrypted.append(chr(shifted))
+    s = (D + M + Y) % 25 + 1
+    r = []
+    for i in I:
+        if i not in alphabet:
+            r.append(i)
         else:
-            decrypted.append(c)
-
-    print("".join(decrypted))
+            r.append(alphabet[alphabet.index(i) - s])
+    
+    print(''.join(r))
