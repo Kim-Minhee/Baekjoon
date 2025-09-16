@@ -22,13 +22,13 @@
 
 <p>왼쪽 두 개는 가능한 블록의 배치, 오른쪽 세 개는 불가능한 배치이다.</p>
 
-<p><img alt="" src="https://www.acmicpc.net/upload/images/pyra1.png" style="height:76px; width:513px"></p>
+<p><img alt="" src="" style="height:76px; width:513px"></p>
 
 <p>블록은 땅의 바로 위에 있거나, 블록의 아래에 있는 블록의 모든 면이 땅이나 다른 블록과 접할 때, 안정적이라고 한다. 피라미드의 모든 블록은 안정적이어야 한다.</p>
 
 <p>아래 그림은 회색 블록을 놓았을 때이며, 그 블록이 안정적인 경우는 왼쪽 세 개, 아닌 경우는 오른쪽 두 개이다.</p>
 
-<p><img alt="" src="https://www.acmicpc.net/upload/images/pyra2.png" style="height:94px; width:639px"></p>
+<p><img alt="" src="" style="height:94px; width:639px"></p>
 
 <p>사용할 수 있는 블록의 개수가 주어졌을 때, 그 블록으로 만들 수 있는 가장 높은 안정적인 피라미드의 높이를 구하는 프로그램을 작성하시오.</p>
 
