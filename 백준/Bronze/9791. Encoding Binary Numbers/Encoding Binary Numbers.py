@@ -1,19 +1,34 @@
-while True:
-    B = input()
-    if B == '0':
-        break
-    current_num = B[0]
-    current_cnt = 1
-    r = []
-    for i, b in enumerate(B[1:]):
-        if b == current_num:
-            current_cnt += 1
+# GPT 5
+import sys
+
+def encode_binary(s: str) -> str:
+    # s는 빈 문자열이 아님이 보장되어야 함
+    res = []
+    prev = s[0]
+    count = 1
+    for ch in s[1:]:
+        if ch == prev:
+            count += 1
         else:
-            r.append(current_cnt)
-            r.append(current_num)
-            current_num = b
-            current_cnt = 1
-        if i == len(B) - 2:
-            r.append(current_cnt)
-            r.append(current_num)
-    print(''.join(map(str, r)))
+            res.append(str(count))
+            res.append(prev)
+            prev = ch
+            count = 1
+    # 마지막 구간 추가
+    res.append(str(count))
+    res.append(prev)
+    return "".join(res)
+
+def main():
+    for raw in sys.stdin:
+        line = raw.strip()
+        if line == "0":
+            break
+        if line == "":
+            # 빈 줄은 무시
+            continue
+        # 안전하게 인코딩
+        print(encode_binary(line))
+
+if __name__ == "__main__":
+    main()
