@@ -1,14 +1,11 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
 
 while True:
-    M = int(input())
-    if M == 0:
+    m = int(input().strip())
+    if m == 0:
         break
-    
-    a = M * M - M + 1
-    s = M * (a + M - 1)
-    if s == M ** 3:
-        print('Y', a)
-    else:
-        print('N', 0)
+    # 항상 가능
+    first_odd = m * m - m + 1
+    print("Y", first_odd)
