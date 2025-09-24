@@ -1,48 +1,50 @@
+# GPT 5
 import sys
-input = sys.stdin.readline
+import bisect
 
-def find1(num):
-    a = int(num ** (1 / 3))
-    n = a ** 3
-    if n < num:
-        while n <= num:
-            a += 1
-            n = a ** 3
-        return a - 1
-    if n >= num:
-        while n > num:
-            a -= 1
-            n = a ** 3
-        return a
+MAXV = 151200
 
-def find2(num):
-    a = int((6 * N) ** (1 / 3)) - 1
-    n = (a * (a + 1) * (a + 2)) // 6
-    if n < num:
-        while n <= num:
-            a += 1
-            n = (a * (a + 1) * (a + 2)) // 6
-        return a - 1
-    if n >= num:
-        while n > num:
-            a -= 1
-            n = (a * (a + 1) * (a + 2)) // 6
-        return a
-
+# 모든 비음수 정수의 세제곱수들 (<= MAXV)
+cubes = []
+n = 0
 while True:
-    N = int(input())
-    if N == 0:
+    v = n**3
+    if v > MAXV:
         break
-    
-    a, b = find1(N), find2(N)
-    container1 = [i ** 3 for i in range(a + 1)]
-    container2 = [(i * (i + 1) * (i + 2)) // 6 for i in range(b + 1)]
+    cubes.append(v)
+    n += 1
 
-    c = 0
-    for i in container1:
-        for j in container2:
-            k =  i + j
-            if k <= N and k > c:
-                c = k
+# 모든 비음수 정수의 사면체수들 T(n) = n(n+1)(n+2)/6 (<= MAXV)
+tetras = []
+n = 0
+while True:
+    v = n*(n+1)*(n+2)//6
+    if v > MAXV:
+        break
+    tetras.append(v)
+    n += 1
 
-    print(max(container1[-1], container2[-1], c))                
+# 가능한 모든 합을 모아서 정렬 (중복 제거)
+sums = set()
+for c in cubes:
+    for t in tetras:
+        s = c + t
+        if s <= MAXV:
+            sums.add(s)
+sums = sorted(sums)  # 오름차순 정렬
+
+# 입력 처리
+data = sys.stdin.read().strip().split()
+out_lines = []
+for tok in data:
+    m = int(tok)
+    if m == 0:
+        break
+    # sums에서 m 이하의 최대값을 찾음
+    idx = bisect.bisect_right(sums, m)  # sums[0:idx] <= m
+    if idx == 0:
+        out_lines.append("0")
+    else:
+        out_lines.append(str(sums[idx-1]))
+
+sys.stdout.write("\n".join(out_lines) + ("\n" if out_lines else ""))
