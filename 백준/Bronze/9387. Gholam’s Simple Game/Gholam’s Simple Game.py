@@ -1,28 +1,23 @@
-# GPT 5
 import sys
 input = sys.stdin.readline
 
-T = int(input().strip())
-for _ in range(T):
-    m, n = map(int, input().split())
-    tiles = list(map(int, input().split()))
-
-    # 시작 위치와 방향 찾기
-    start = tiles.index(2) if 2 in tiles else tiles.index(3)
-    direction = 1 if 2 in tiles else -1
-
-    pos = start
-    yellow_count = 0
-
-    for _ in range(n):
-        next_pos = pos + direction
-        # 벽에 닿으면 방향 전환
-        if next_pos < 0 or next_pos >= m:
-            direction *= -1
-            next_pos = pos + direction
-        pos = next_pos
-
-        if tiles[pos] == 0:
-            yellow_count += 1
-
-    print(yellow_count)
+for _ in range(int(input().strip())):
+    M, N = map(int, input().split())
+    A = list(map(int, input().split()))
+    if 2 in A:
+        current = A.index(2) + 1
+        dir = 1
+    else:
+        current = A.index(3) + 1
+        dir = -1
+    
+    cnt_y = 0
+    for _ in range(N):
+        if dir == 1 and current == M:
+            dir = -1
+        elif dir == -1 and current == 1:
+            dir = 1
+        current += dir
+        if A[current - 1] == 0:
+            cnt_y += 1
+    print(cnt_y)
