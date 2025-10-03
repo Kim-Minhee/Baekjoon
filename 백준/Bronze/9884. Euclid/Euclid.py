@@ -1,10 +1,13 @@
+# GPT 5
 import sys
-input = sys.stdin.readline
+import math
 
-A, B = map(int, input().split())
-while A != B:
-    a = max(A, B) - min(A, B)
-    b = min(A, B)
-    A = a
-    B = b
-print(B)
+def main():
+    data = sys.stdin.read().strip().split()
+    if not data:
+        return
+    a, b = map(int, data[:2])
+    print(math.gcd(a, b))
+
+if __name__ == "__main__":
+    main()
