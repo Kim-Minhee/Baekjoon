@@ -1,16 +1,13 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
 
-for _ in range(int(input().strip())):
-    K = int(input().strip())
-    r = []
-    start = False
-    for m in range(14, -1, -1):
-        if 3 ** m <= K:
-            cnt = K // (3 ** m)
-            r.append(cnt)
-            K -= 3 ** m * cnt
-            start = True
-        elif start:
-            r.append(0)
-    print(*r)
+for _ in range(int(input())):
+    K = int(input())
+    counts = []
+    while K > 0:
+        counts.append(K % 3)
+        K //= 3
+
+    # 출력 형식: 맨 높은 차원부터 (마지막부터) 출력
+    print(" ".join(map(str, counts[::-1])) if counts else "0")
