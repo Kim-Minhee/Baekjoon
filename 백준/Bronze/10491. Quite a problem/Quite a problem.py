@@ -1,6 +1,8 @@
-while True:
-    try:
-        S = input().strip().lower()
-        print('yes' if 'problem' in S else 'no')
-    except:
-        break
+# GPT 5
+import sys
+
+for line in sys.stdin:
+    if 'problem' in line.lower():
+        print('yes')
+    else:
+        print('no')
