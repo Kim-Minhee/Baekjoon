@@ -1,4 +1,4 @@
-import sys, math
+import sys
 input = sys.stdin.readline
 
 def harmony_chk(a, b):
