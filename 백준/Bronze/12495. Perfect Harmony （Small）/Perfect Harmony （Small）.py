@@ -1,27 +1,28 @@
+# GPT 5.1
 import sys
 input = sys.stdin.readline
 
-def harmony_chk(a, b):
-    if a % b == 0 or b % a == 0:
-        return True
-    return False
+T = int(input().strip())
 
-for t in range(1, int(input().strip()) + 1):
+for t in range(1, T + 1):
     N, L, H = map(int, input().split())
     F = list(map(int, input().split()))
-    if L == 1:
-        print(f'Case #{t}: 1')
-        continue
-    end_chk = False
-    for jeff in range(L, H + 1):
-        find_chk = True
-        for freq in F:
-            if not harmony_chk(jeff, freq):
-                find_chk = False
+
+    answer = None
+
+    # Jeff가 선택 가능한 모든 음 X 검사
+    for X in range(L, H + 1):
+        ok = True
+        for f in F:
+            # 조화 조건: 한쪽이 다른 쪽의 약수/배수
+            if not (f % X == 0 or X % f == 0):
+                ok = False
                 break
-        if find_chk:
-            print(f'Case #{t}: {jeff}')
-            end_chk = True
+        if ok:
+            answer = X
             break
-    if not end_chk:
-        print(f'Case #{t}: NO')
+
+    if answer is None:
+        print(f"Case #{t}: NO")
+    else:
+        print(f"Case #{t}: {answer}")
