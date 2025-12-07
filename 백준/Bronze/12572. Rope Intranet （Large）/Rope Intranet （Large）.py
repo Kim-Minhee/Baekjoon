@@ -1,9 +1,15 @@
 import sys
-input = sys.stdin.readline
 
-for t in range(1, int(input().strip()) + 1):
-    N = int(input().strip())
-    windows = [tuple(map(int, input().split())) for _ in range(N)]
+INPUT_DATA = sys.stdin.read().split()
+data = iter(INPUT_DATA)
+
+for t in range(1, int(next(data)) + 1):
+    n = int(next(data))
+    windows = []
+    for _ in range(n):
+        a = int(next(data))
+        b = int(next(data))
+        windows.append((a, b))
 
     cross_cnt = 0
     for i, (a1, b1) in enumerate(windows):
