@@ -1,13 +1,19 @@
+# GPT 5.1
 import sys
 input = sys.stdin.readline
 
 while True:
-    N = int(input().strip())
-    if N == 0:
+    n = int(input().strip())
+    if n == 0:
         break
-    S = list(map(int, input().split()))
-    S.sort()
-    sub = abs(S[0] - S[1])
-    for i in range(1, len(S) - 1):
-        sub = min(sub, abs(S[i] - S[i + 1]))
-    print(sub)
+
+    scores = list(map(int, input().split()))
+    scores.sort()
+
+    min_diff = float('inf')
+    for i in range(n - 1):
+        diff = scores[i + 1] - scores[i]
+        if diff < min_diff:
+            min_diff = diff
+
+    print(min_diff)
