@@ -1,18 +1,16 @@
-# GPT 5.2
 import sys
 input = sys.stdin.readline
 
 N, M = map(int, input().split())
-
-costs = []
+need_money = []
 for _ in range(M):
     A, B = map(int, input().split())
-    costs.append(max(0, N - A))
-
-total_cost = sum(costs)
-max_cost = max(costs)
-
-# M-1장 이상을 살리기 위한 최소 비용
-answer = total_cost - max_cost
-
-print(answer)
+    if A >= N:
+        continue
+    else:
+        need_money.append(N - A)
+if len(need_money) <= 1:
+    print(0)
+else:
+    need_money.sort()
+    print(sum(need_money[:-1]))
