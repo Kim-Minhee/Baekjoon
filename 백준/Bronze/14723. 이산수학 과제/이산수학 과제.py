@@ -1,12 +1,27 @@
+# Gemini 3 Pro
 import sys
-input = sys.stdin.readline
 
-N = int(input().strip())
-n = 1
-a_list = [1]
-b_list = [1]
-while len(a_list) < N:
-    n += 1
-    a_list += [a for a in range(n, 0, -1)]
-    b_list += [b for b in range(1, n + 1)]
-print(a_list[N - 1], b_list[N - 1])
+def solve():
+    # 입력 N 받기
+    n = int(sys.stdin.readline())
+
+    line = 1
+    # N이 현재 줄(line)의 개수보다 크다면
+    # 그만큼 빼고 다음 줄로 넘어감
+    while n > line:
+        n -= line
+        line += 1
+
+    # 반복문이 끝나면:
+    # line: N번째 분수가 속한 대각선 줄 번호
+    # n: 그 줄에서 몇 번째인지 (인덱스)
+    
+    # 규칙: 분자 + 분모 = line + 1
+    # 분자는 내림차순 (line -> 1), 분모는 오름차순 (1 -> line)
+    numerator = line - n + 1
+    denominator = n
+
+    print(f"{numerator} {denominator}")
+
+if __name__ == "__main__":
+    solve()
