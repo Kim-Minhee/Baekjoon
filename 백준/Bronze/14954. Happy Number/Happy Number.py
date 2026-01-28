@@ -1,19 +1,18 @@
+# GPT 5.1
 import sys
 input = sys.stdin.readline
 
-def chk_happy(num):
-    str_num = str(num)
-    r = 0
-    for n in str_num:
-        r += int(n) ** 2
-    return r
+def f(n):
+    return sum((int(c) ** 2) for c in str(n))
 
-N = int(input().strip())
-while True:
-    if N == 1:
-        print('HAPPY')
-        break
-    elif N in [4, 16, 37, 58, 89, 145, 42, 20]:
-        print('UNHAPPY')
-        break
-    N = chk_happy(N)
+n = int(input().strip())
+visited = set()
+
+while n != 1 and n not in visited:
+    visited.add(n)
+    n = f(n)
+
+if n == 1:
+    print("HAPPY")
+else:
+    print("UNHAPPY")
