@@ -1,59 +1,51 @@
-# Gemini 3 Pro
 import sys
+input = sys.stdin.readline
 
 def solve():
-    # 빠른 입력을 위해 sys.stdin.read 사용
-    input_data = sys.stdin.read().split()
-    if not input_data:
-        return
-
-    # 첫 번째 값은 N
-    iterator = iter(input_data)
     try:
-        N = int(next(iterator))
-    except StopIteration:
+        line1 = input().strip()
+        if not line1: return
+        N = int(line1)
+        
+        # B 리스트 입력
+        # 입력 데이터가 매우 많을 수 있으므로 sys.stdin.read()가 더 빠를 수 있지만
+        # 질문자님 스타일대로 input().split() 유지
+        B = list(map(int, input().split()))
+    except ValueError:
         return
 
-    # 나머지 N개의 b_i 값을 리스트로 변환 필요 없이 반복문에서 처리
-    # (메모리 절약을 위해 iterator 그대로 사용)
+    # 두 개의 변수로 분리
+    cur_mod = 1        # 정답 출력용 (나머지 값)
+    cur_val = 1        # 에러 체크용 (실제 값)
     
-    MOD = 10**9 + 7
-    
-    # 임계값 설정: b_i의 최대가 2^60이므로, 그보다 조금 큰 2^61 정도로 설정
-    # 이 값을 넘으면 "무한대"로 취급 (절대 부족해질 일 없음)
-    LIMIT = 2**62 
-    
-    cur_val = 1    # 실제 값 (에러 체크용)
-    cur_mod = 1    # 나머지 값 (정답 출력용)
-    is_infinite = False # 실제 값이 LIMIT를 넘었는지 여부
+    MOD = 1000000007
+    LIMIT = 2**61      # 충분히 큰 값 (문제의 bi 최대값인 2^60보다 큼)
+    is_infinite = False # cur_val이 LIMIT를 넘었는지 여부
 
-    for _ in range(N):
-        b = int(next(iterator))
-        
+    for hour in range(N):
         # 1. 박테리아 2배 증식
         cur_mod = (cur_mod * 2) % MOD
         
+        # 실제 값은 LIMIT를 넘지 않았을 때만 계산
         if not is_infinite:
             cur_val *= 2
-            # 임계치를 넘으면 무한대 모드로 전환
             if cur_val > LIMIT:
                 is_infinite = True
         
-        # 2. 실험에 b마리 사용 (빼기)
-        # 모듈러 연산에서 뺄셈은 음수가 될 수 있으므로 + MOD 처리
-        cur_mod = (cur_mod - (b % MOD) + MOD) % MOD
+        need_b = B[hour]
         
+        # 2. 박테리아 사용 (검증)
+        # 무한대 상태면 무조건 충분하므로 체크할 필요 없음
         if not is_infinite:
-            cur_val -= b
-            # 박테리아가 부족하면 에러
-            if cur_val < 0:
-                print("error")
+            if cur_val < need_b:
+                print('error')
                 return
-        # is_infinite 상태라면:
-        # 현재 값(> 2^62) - b(<= 2^60) 은 여전히 매우 큰 양수이므로
-        # 별도의 체크나 갱신이 필요 없음 (계속 infinite 상태 유지)
+            cur_val -= need_b
+            
+        # 정답용 변수 계산 (뺄셈 후 음수 방지를 위해 + MOD)
+        cur_mod = (cur_mod - (need_b % MOD) + MOD) % MOD
 
-    # 모든 실험이 끝난 후 나머지 값 출력
+    # 에러 없이 끝났다면 나머지 출력
     print(cur_mod)
 
 if __name__ == "__main__":
