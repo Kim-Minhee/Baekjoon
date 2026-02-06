@@ -1,9 +1,11 @@
+# GPT 5.1
 import sys
 input = sys.stdin.readline
 
-N = int(input().strip())
-while True:
-    N += 1
-    if '0' not in str(N):
-        print(N)
-        break
+n = int(input().strip())
+x = n + 1
+
+while '0' in str(x):
+    x += 1
+
+print(x)
