@@ -1,12 +1,18 @@
-from collections import Counter
+# GPT 5.1
 import sys
 input = sys.stdin.readline
 
-TEXT = input().strip().upper()
-letter_counter = Counter(TEXT)
-for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ':
-    print(f'{letter} |', end='')
-    if letter in letter_counter:
-        print(' ' + '*' * letter_counter[letter])
-    else:
-        print()
+text = input().strip().upper()
+
+# A~Z 빈도 저장
+count = [0] * 26
+
+for ch in text:
+    if 'A' <= ch <= 'Z':
+        count[ord(ch) - ord('A')] += 1
+
+# 출력
+for i in range(26):
+    letter = chr(ord('A') + i)
+    stars = '*' * count[i]
+    print(f"{letter} | {stars}")
