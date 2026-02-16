@@ -1,25 +1,22 @@
-import sys, re
+# GPT 5.1
+import sys
 input = sys.stdin.readline
 
-def chk_valid(password):
-    if not re.search(r'[a-z]', password):
-        return False
-    if not re.search(r'[A-Z]', password):
-        return False
-    if not re.search(r'[0-9]', password):
-        return False
-    if not re.search(r'[+_)(*&^%$#@!./,;{}]', password):
-        return False
-    return True
+symbols = set("+_)(*&^%$#@!./,;{}")
 
-N = int(input().strip())
-for _ in range(N):
+T = int(input().strip())
+
+for _ in range(T):
     S = int(input().strip())
-    P = input().strip()
-    if S < 12:
-        print('invalid')
-        continue
-    if chk_valid(P):
-        print('valid')
+    pw = input().strip()
+    
+    if (
+        S >= 12 and
+        any(c.islower() for c in pw) and
+        any(c.isupper() for c in pw) and
+        any(c.isdigit() for c in pw) and
+        any(c in symbols for c in pw)
+    ):
+        print("valid")
     else:
-        print('invalid')
+        print("invalid")
