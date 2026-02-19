@@ -1,12 +1,16 @@
-import sys, math
+# GPT 5.1
+import sys
 input = sys.stdin.readline
 
-for _ in range(int(input().strip())):
-    K, B, N = map(int, input().split())
+P = int(input())
+
+for _ in range(P):
+    K, b, n = map(int, input().split())
+    
     ssd = 0
-    max_degree = int(math.log(N, B))
-    for degree in range(max_degree, -1, -1):
-        a, mod = divmod(N, B ** degree)
-        ssd += a ** 2
-        N = mod
+    while n > 0:
+        digit = n % b
+        ssd += digit * digit
+        n //= b
+    
     print(K, ssd)
