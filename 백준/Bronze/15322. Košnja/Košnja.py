@@ -1,6 +1,9 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
 
-for _ in range(int(input().strip())):
+K = int(input())
+
+for _ in range(K):
     N, M = map(int, input().split())
-    print((min(N, M) - 1) * 2)
+    print(2 * (min(N, M) - 1))
