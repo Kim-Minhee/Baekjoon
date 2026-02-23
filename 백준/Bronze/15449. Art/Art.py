@@ -1,14 +1,14 @@
+# GPT 5
 import sys
-input = sys.stdin.readline
+from itertools import combinations
 
-L = list(map(int, input().split()))
-L.sort()
+lengths = list(map(int, sys.stdin.readline().split()))
 
-tri = set()
-for i in range(3):
-    for j in range(i + 1, 4):
-        for k in range(j + 1, 5):
-            l1, l2, l3 = L[i], L[j], L[k]
-            if l1 + l2 > l3:
-                tri.add((l1, l2, l3))
-print(len(tri))
+count = 0
+
+for a, b, c in combinations(lengths, 3):
+    sides = sorted([a, b, c])
+    if sides[0] + sides[1] > sides[2]:
+        count += 1
+
+print(count)
