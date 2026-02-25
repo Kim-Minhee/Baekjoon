@@ -1,14 +1,20 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
+write = sys.stdout.write
 
-for _ in range(int(input().strip())):
-    V = int(input().strip())
-    if V == 0:
-        print(0)
+n = int(input().strip())
+
+for _ in range(n):
+    v = int(input().strip())
+
+    if v == 0:
+        write("0\n")
         continue
-    
-    base3 = []
-    while V > 0:
-        V, m = divmod(V, 3)
-        base3.append(str(m))
-    print(''.join(base3[::-1]))
+
+    digits = []
+    while v > 0:
+        digits.append(str(v % 3))
+        v //= 3
+
+    write("".join(reversed(digits)) + "\n")
