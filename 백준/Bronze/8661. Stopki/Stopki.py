@@ -1,5 +1,8 @@
+import sys
+input = sys.stdin.readline
+
 X, K, A = map(int, input().split())
-X = X % (K + A)
+X %= (K + A)
 if X < K:
     print(1)
 else:
