@@ -4,7 +4,6 @@ import sys
 def solve():
     input = sys.stdin.readline
     
-    # a: 양 1마리 사료, b: 염소 1마리 사료, n: 전체 마릿수, w: 전체 사료 양
     try:
         line = input().split()
         if not line: return
@@ -12,26 +11,38 @@ def solve():
     except ValueError:
         return
 
-    answers = []
-    
-    # 양(sheep)은 최소 1마리, 최대 n-1마리 가능
-    for sheep in range(1, n):
-        goats = n - sheep # 염소의 수는 전체 - 양의 수
-        
-        # 사료의 총합이 w와 일치하는지 확인
-        if a * sheep + b * goats == w:
-            answers.append((sheep, goats))
+    # Case 1: a와 b가 같을 때 (0으로 나누기 방지)
+    if a == b:
+        # 사료 총량이 딱 맞아떨어지는 경우
+        if w == a * n:
+            # 전체가 2마리면 (양 1마리, 염소 1마리) 경우의 수 딱 1개뿐
+            if n == 2:
+                print("1 1")
+            # 3마리 이상이면 (1, n-1), (2, n-2) 등 해가 2개 이상이므로 -1
+            else:
+                print("-1")
+        # 사료 총량이 맞지 않으면 해가 없음
+        else:
+            print("-1")
             
-            # 해가 2개 이상이 되는 순간 더 탐색할 필요 없이 중단하여 효율성 극대화
-            if len(answers) > 1:
-                break
-                
-    # 해가 정확히 1개일 때만 결과 출력
-    if len(answers) == 1:
-        print(f"{answers[0][0]} {answers[0][1]}")
+    # Case 2: a와 b가 다를 때 (일반적인 연립방정식 풀이)
     else:
-        # 해가 없거나(0개) 2개 이상인 경우
-        print("-1")
+        numerator = w - (b * n)
+        denominator = a - b
+        
+        # 나머지가 0이어야 온전한 마릿수(정수)가 나옴
+        if numerator % denominator == 0:
+            x = numerator // denominator
+            y = n - x
+            
+            # 조건: 양과 염소 모두 1마리 이상이어야 함
+            if x >= 1 and y >= 1:
+                print(f"{x} {y}")
+            else:
+                print("-1")
+        else:
+            # 나누어 떨어지지 않으면 해가 없는 것
+            print("-1")
 
 if __name__ == '__main__':
     solve()
