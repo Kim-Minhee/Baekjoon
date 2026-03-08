@@ -1,15 +1,17 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
 
-A, B, N, W = map(int, input().split())
+a, b, n, w = map(int, input().split())
 
-r = []
-for x in range(1, N):
-    y = N - x
-    if A * x + B * y == W:
-        r.append([x, y])
+ans = []
 
-if len(r) == 1:
-    print(*r[0])
+for x in range(1, n):
+    y = n - x
+    if a * x + b * y == w:
+        ans.append((x, y))
+
+if len(ans) == 1:
+    print(ans[0][0], ans[0][1])
 else:
     print(-1)
