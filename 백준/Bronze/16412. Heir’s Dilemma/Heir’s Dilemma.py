@@ -1,21 +1,30 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
 
-def div_chk(num):
-    str_num = str(num)
-    for n in str_num:
-        if num % int(n) != 0:
-            return False
-    return True
-
 L, H = map(int, input().split())
-c = 0
-for num in range(L, H + 1):
-    str_num = str(num)
-    if '0' in str_num:
+
+cnt = 0
+
+for c in range(L, H + 1):
+    s = str(c)
+    
+    # 0 포함 여부
+    if '0' in s:
         continue
-    if len(set(str_num)) != 6:
+    
+    # 서로 다른 숫자
+    if len(set(s)) != 6:
         continue
-    if div_chk(num):
-        c += 1
-print(c)
+    
+    # 각 자리 숫자로 나누어 떨어지는지
+    ok = True
+    for d in s:
+        if c % int(d) != 0:
+            ok = False
+            break
+    
+    if ok:
+        cnt += 1
+
+print(cnt)
