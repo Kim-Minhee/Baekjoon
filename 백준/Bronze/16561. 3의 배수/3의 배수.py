@@ -1,13 +1,11 @@
+# GPT 5
 import sys
-input = sys.stdin.readline
 
-N = int(input().strip())
-if N < 9:
+n = int(sys.stdin.readline())
+
+k = n // 3
+
+if k < 3:
     print(0)
 else:
-    s = N // 3
-    cnt = 0
-    for a in range(1, s - 1):
-        for b in range(1, s - a):
-            cnt += 1
-    print(cnt) 
+    print((k - 1) * (k - 2) // 2)
