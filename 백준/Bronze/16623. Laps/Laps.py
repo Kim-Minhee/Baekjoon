@@ -1,13 +1,14 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
 
-N, M = map(int, input().split())
-R = list(map(int, input().split()))
-t = 0
-if R[0] == N:
-    t += 1
-for i in range(1, M):
-    if R[i - 1] <= R[i]:
-        continue
-    t += 1
-print(t)
+n, m = map(int, input().split())
+A = list(map(int, input().split()))
+
+laps = 0
+
+for i in range(1, m):
+    if A[i] < A[i-1]:
+        laps += 1
+
+print(laps)
