@@ -1,34 +1,16 @@
-# GPT 5
 import sys
 input = sys.stdin.readline
 
-N = int(input())
-A = list(map(int, input().split()))
+N = int(input().strip())
+A = [-1] + list(map(int, input().split()))
+X1, D1 = input().split()
+X2, D2 = input().split()
 
-x1, d1 = input().split()
-x1 = int(x1)
-
-x2, d2 = input().split()
-x2 = int(x2)
-
-# Ayu
-students = 0
-if d1 == "left":
-    for i in range(x1-1, -1, -1):
-        students += A[i]
-else:
-    for i in range(x1-1, N):
-        students += A[i]
-
-# Budi
-empty = 0
-if d2 == "left":
-    for i in range(x2-1, -1, -1):
-        if A[i] == 0:
-            empty += 1
-else:
-    for i in range(x2-1, N):
-        if A[i] == 0:
-            empty += 1
-
-print(students, empty)
+X1, X2 = int(X1), int(X2)
+x1, x2 = 0, 0
+for i, a in enumerate(A):
+    if ((D1 == 'right' and i >= X1) or (D1 == 'left' and i <= X1)) and a > 0:
+        x1 += a
+    if ((D2 == 'right' and i >= X2) or (D2 == 'left' and i <= X2)) and a == 0:
+        x2 += 1
+print(x1, x2)
