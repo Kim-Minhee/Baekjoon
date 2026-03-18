@@ -1,20 +1,32 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
 
-T, S = input().split()
-r = []
-if T == 'E':
-    cur_s, cur_c = S[0], 1
-    for s in S[1:]:
-        if s == cur_s:
-            cur_c += 1
+line = input().rstrip()
+mode, s = line[0], line[2:]
+
+# Encode
+if mode == 'E':
+    result = []
+    count = 1
+    
+    for i in range(1, len(s)):
+        if s[i] == s[i-1]:
+            count += 1
         else:
-            r.append(cur_s + str(cur_c))
-            cur_s = s
-            cur_c = 1
-    r.append(cur_s + str(cur_c))
+            result.append(s[i-1] + str(count))
+            count = 1
+    result.append(s[-1] + str(count))
+    
+    print(''.join(result))
+
+# Decode
 else:
-    for i in range(0, len(S), 2):
-        t, c = S[i], int(S[i + 1])
-        r.append(t * c)
-print(''.join(r))
+    result = []
+    
+    for i in range(0, len(s), 2):
+        char = s[i]
+        count = int(s[i+1])
+        result.append(char * count)
+    
+    print(''.join(result))
