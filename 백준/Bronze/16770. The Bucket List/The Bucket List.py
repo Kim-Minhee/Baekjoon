@@ -1,10 +1,24 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
 
-N = int(input().strip())
-time = [0] * 1001
+N = int(input())
+
+events = []
+
 for _ in range(N):
-    S, T, B = map(int, input().split())
-    for i in range(S, T + 1):
-        time[i] += B
-print(max(time))
+    s, t, b = map(int, input().split())
+    events.append((s, b))   # 시작 → +b
+    events.append((t, -b))  # 끝 → -b
+
+# 시간순 정렬
+events.sort()
+
+cur = 0
+ans = 0
+
+for time, val in events:
+    cur += val
+    ans = max(ans, cur)
+
+print(ans)
