@@ -1,53 +1,22 @@
-# Gemini 3.1 Pro
+# Gemini 3.1 Pro 피드백
 import sys
+input = sys.stdin.readline
 
-def solve():
-    # 입력 데이터를 공백과 줄바꿈 기준으로 한 번에 모두 분리해서 리스트로 만듭니다.
-    input_data = sys.stdin.read().split()
-    if not input_data:
-        return
-        
-    # K: 테스트 케이스의 개수
-    K = int(input_data[0])
-    idx = 1
+# 전체 테스트 케이스 개수
+for x in range(1, int(input().strip()) + 1):
+    N, K = map(int, input().split())
+    MY = input().strip()
     
-    for x in range(1, K + 1):
-        n = int(input_data[idx])      # 조상의 수
-        k = int(input_data[idx + 1])  # 유전자의 길이
-        idx += 2
-        
-        # 본인의 유전자
-        my_traits = input_data[idx]
-        idx += 1
-        
-        # 조상들의 유전자 리스트 저장
-        ancestors = []
-        for _ in range(n):
-            ancestors.append(input_data[idx])
-            idx += 1
-            
-        # 돌연변이 개수 세기
-        mutant_count = 0
-        
-        # 각 유전자 위치(0 ~ k-1)마다 검사
-        for i in range(k):
-            is_mutant = True
-            
-            # 모든 조상들의 i번째 문자와 내 i번째 문자를 비교
-            for ancestor in ancestors:
-                if my_traits[i] == ancestor[i]:
-                    # 한 명이라도 같으면 유전된 것이므로 돌연변이가 아님
-                    is_mutant = False
-                    break
-                    
-            # 아무와도 같지 않았다면 돌연변이 수 증가
-            if is_mutant:
-                mutant_count += 1
-                
-        # 문제에서 요구한 형식에 맞춰 출력
-        print(f"Data Set {x}:")
-        print(f"{mutant_count}/{k}")
-        print() # 각 데이터 셋 끝에 빈 줄 출력
+    # [팁 1 적용] 조상들의 유전자를 딕셔너리가 아닌 리스트로 깔끔하게 모아둡니다.
+    ancestors = [input().strip() for _ in range(N)]
 
-if __name__ == '__main__':
-    solve()
+    cnt = 0
+    # [팁 2 적용] 내 유전자 1개와 조상들의 유전자 세로 묶음(튜플)을 동시에 꺼냅니다.
+    for my_gene, ancestor_genes in zip(MY, zip(*ancestors)):
+        # 내 유전자가 조상들의 세로 묶음 안에 없다면 돌연변이!
+        if my_gene not in ancestor_genes:
+            cnt += 1
+            
+    print(f'Data Set {x}:')
+    print(f'{cnt}/{K}')
+    print()
