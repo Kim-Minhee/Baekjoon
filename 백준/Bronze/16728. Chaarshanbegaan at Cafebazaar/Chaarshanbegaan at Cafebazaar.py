@@ -1,14 +1,36 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
 
-scores = [(10, 10), (30, 9), (50, 8), (70, 7), (90, 6), (110, 5), (130, 4), (150, 3), (170, 2), (190, 1)]
+N = int(input())
+total = 0
 
-r = 0
-for _ in range(int(input().strip())):
-    X, Y = map(int, input().split())
-    d = (X * X + Y * Y) ** 0.5
-    for s in scores:
-        if d <= s[0]:
-            r += s[1]
-            break
-print(r)
+for _ in range(N):
+    x, y = map(int, input().split())
+    
+    d2 = x*x + y*y  # sqrt 안 쓰고 제곱으로 비교
+    
+    if d2 <= 10*10:
+        total += 10
+    elif d2 <= 30*30:
+        total += 9
+    elif d2 <= 50*50:
+        total += 8
+    elif d2 <= 70*70:
+        total += 7
+    elif d2 <= 90*90:
+        total += 6
+    elif d2 <= 110*110:
+        total += 5
+    elif d2 <= 130*130:
+        total += 4
+    elif d2 <= 150*150:
+        total += 3
+    elif d2 <= 170*170:
+        total += 2
+    elif d2 <= 190*190:
+        total += 1
+    else:
+        total += 0
+
+print(total)
