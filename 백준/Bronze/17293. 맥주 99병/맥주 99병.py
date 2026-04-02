@@ -1,25 +1,23 @@
-# GPT 5
 import sys
 input = sys.stdin.readline
 
-N = int(input())
-
-def get_bottle(k):
-    if k == 0:
-        return "no more bottles"
-    elif k == 1:
-        return "1 bottle"
+N = int(input().strip())
+k = N
+while k > 1:
+    print(f'{k} bottles of beer on the wall, {k} bottles of beer.')
+    k -= 1
+    if k != 1:
+        print(f'Take one down and pass it around, {k} bottles of beer on the wall.')
     else:
-        return f"{k} bottles"
+        print(f'Take one down and pass it around, 1 bottle of beer on the wall.')
+    print()
 
-for k in range(N, 0, -1):
-    print(f"{get_bottle(k)} of beer on the wall, {get_bottle(k)} of beer.")
-    
-    next_k = k - 1
-    print(f"Take one down and pass it around, {get_bottle(next_k)} of beer on the wall.")
-    
-    print()  # 빈 줄
+print('1 bottle of beer on the wall, 1 bottle of beer.')
+print('Take one down and pass it around, no more bottles of beer on the wall.')
+print()
 
-# 마지막 부분
-print("No more bottles of beer on the wall, no more bottles of beer.")
-print(f"Go to the store and buy some more, {get_bottle(N)} of beer on the wall.")
+print('No more bottles of beer on the wall, no more bottles of beer.')
+if N > 1:
+    print(f'Go to the store and buy some more, {N} bottles of beer on the wall.')
+else:
+    print(f'Go to the store and buy some more, 1 bottle of beer on the wall.')
