@@ -1,15 +1,18 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
 
-N = int(input().strip())
-S = input().rstrip()
+N = int(input())
+S = input().strip()
 
-bonus = 0
 score = 0
-for i, s in enumerate(S):
-    if s == 'O':
-        score += i + 1 + bonus
+bonus = 0
+
+for i in range(N):
+    if S[i] == 'O':
+        score += (i + 1) + bonus
         bonus += 1
     else:
         bonus = 0
+
 print(score)
