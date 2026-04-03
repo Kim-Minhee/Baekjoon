@@ -1,13 +1,18 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
 
 while True:
-    N, M = map(int, input().split())
-    if N == M == 0:
+    n, m = map(int, input().split())
+
+    if n == 0 and m == 0:
         break
 
-    scores = [0] * N
-    for _ in range(M):
-        for i, p in enumerate(map(int, input().split())):
-            scores[i] += p
-    print(max(scores))
+    total = [0] * n  # 각 학생 총점
+
+    for _ in range(m):
+        scores = list(map(int, input().split()))
+        for i in range(n):
+            total[i] += scores[i]
+
+    print(max(total))
