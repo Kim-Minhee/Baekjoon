@@ -2,24 +2,24 @@
 import sys
 input = sys.stdin.readline
 
-N = int(input())
+N = int(input().strip())
 ops = [tuple(map(int, input().split())) for _ in range(N)]
 
 answer = 0
 
 # 초기 위치 1, 2, 3 모두 시도
-for start in range(1, 4):
+for start in [1, 2, 3]:
     pos = start
     score = 0
     
     for a, b, g in ops:
-        # swap
+        # 위치 업데이트 (swap)
         if pos == a:
             pos = b
         elif pos == b:
             pos = a
         
-        # guess 체크
+        # 맞췄는지 확인
         if pos == g:
             score += 1
     
