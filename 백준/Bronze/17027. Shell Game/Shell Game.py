@@ -12,7 +12,6 @@ for first in range(1, 4):
             cur = b
         elif cur == b:
             cur = a
-        a, b = b, a
         if cur == g:
             score += 1
     max_score = max(max_score, score)
