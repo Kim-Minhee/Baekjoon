@@ -1,10 +1,18 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
 
-JU = list(map(int, input().split()))
-UJ = list(map(int, input().split()))
+state = list(map(int, input().split()))
+ustate = list(map(int, input().split()))
 
-JU.sort(reverse=True)
-UJ.sort(reverse=True)
-cnt = sum(1 for i in range(5) if JU[i] > UJ[i])
-print(cnt)
+# 내림차순 정렬
+state.sort(reverse=True)
+ustate.sort(reverse=True)
+
+count = 0
+
+for i in range(5):
+    if state[i] > ustate[i]:
+        count += 1
+
+print(count)
