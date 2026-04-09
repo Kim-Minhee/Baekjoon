@@ -1,22 +1,19 @@
-# GPT 5
+# Gemini 3.1 Pro
 import sys
-input = sys.stdin.readline
 
-y = int(input().strip())
-
-# 시작 시점 (월 단위)
-start = 2018 * 12 + 4
-
-# 해당 연도의 시작/끝
-year_start = y * 12 + 1
-year_end = y * 12 + 12
-
-cur = start
-
-while cur <= year_end:
-    if year_start <= cur <= year_end:
+def solve():
+    # 입력값을 정수로 변환합니다.
+    y = int(sys.stdin.read().strip())
+    
+    # 2018년을 기준으로 13년마다 동일한 패턴이 반복됩니다.
+    # 목표 연도가 주기 내에서 몇 번째에 위치하는지 계산합니다.
+    offset = (y - 2018) % 13
+    
+    # 발사가 가능한 오프셋 집합
+    if offset in (0, 2, 4, 6, 8, 11):
         print("yes")
-        break
-    cur += 26
-else:
-    print("no")
+    else:
+        print("no")
+
+if __name__ == '__main__':
+    solve()
