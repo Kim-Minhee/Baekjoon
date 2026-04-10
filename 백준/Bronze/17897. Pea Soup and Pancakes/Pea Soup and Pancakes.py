@@ -1,11 +1,25 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
 
-r = 'Anywhere is fine I guess'
-for _ in range(int(input().strip())):
-    K = int(input().strip())
-    R = input().strip()
-    menus = set(input().strip() for _ in range(K))
-    if 'pea soup' in menus and 'pancakes' in menus and r == 'Anywhere is fine I guess':
-        r = R
-print(r)
+n = int(input().strip())
+
+for _ in range(n):
+    k = int(input().strip())
+    name = input().strip()
+    
+    has_pea = False
+    has_pancakes = False
+    
+    for _ in range(k):
+        menu = input().strip()
+        if menu == "pea soup":
+            has_pea = True
+        if menu == "pancakes":
+            has_pancakes = True
+    
+    if has_pea and has_pancakes:
+        print(name)
+        break
+else:
+    print("Anywhere is fine I guess")
