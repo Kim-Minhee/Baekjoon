@@ -1,12 +1,13 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
 
-S = list(input().split())
-cnt = 0
-for s in S:
-    if 'ae' in s:
-        cnt += 1
-if cnt / len(S) >= 0.4:
-    print('dae ae ju traeligt va')
+words = input().strip().split()
+
+total = len(words)
+cnt = sum(1 for w in words if "ae" in w)
+
+if cnt * 100 >= total * 40:
+    print("dae ae ju traeligt va")
 else:
-    print('haer talar vi rikssvenska')
+    print("haer talar vi rikssvenska")
