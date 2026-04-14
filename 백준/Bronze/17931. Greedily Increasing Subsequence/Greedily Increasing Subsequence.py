@@ -1,30 +1,41 @@
-# Gemini 3.1 Pro
+# GPT 5
 import sys
+input = sys.stdin.readline
 
-def solve():
-    # 입력 속도를 높이기 위해 sys.stdin.read 사용
-    input_data = sys.stdin.read().split()
-    if not input_data:
-        return
-    
-    n = int(input_data[0])
-    a = input_data[1:]
-    
-    gis = []
-    # 첫 번째 원소는 무조건 포함 (g1 = a1)
-    current_max = int(a[0])
-    gis.append(str(current_max))
-    
-    # 두 번째 원소부터 순회하며 현재 최댓값보다 큰 경우만 추가
-    for i in range(1, n):
-        num = int(a[i])
-        if num > current_max:
-            current_max = num
-            gis.append(str(num))
-    
-    # 출력 형식에 맞춰 길이와 수열 출력
-    print(len(gis))
-    print(" ".join(gis))
+N = int(input())
+A = list(map(int, input().split()))
 
-if __name__ == "__main__":
-    solve()
+pos = [0] * (N + 1)
+for i in range(N):
+    pos[A[i]] = i
+
+# suffix minimum
+min_pos = [0] * (N + 2)
+min_pos[N] = pos[N]
+
+for i in range(N - 1, 0, -1):
+    if pos[i] < min_pos[i + 1]:
+        min_pos[i] = pos[i]
+    else:
+        min_pos[i] = min_pos[i + 1]
+
+res = []
+cur = A[0]
+cur_pos = pos[cur]
+res.append(cur)
+
+while cur < N:
+    # cur보다 큰 값들 중 가장 왼쪽 위치
+    nxt_pos = min_pos[cur + 1]
+
+    if nxt_pos <= cur_pos:
+        break
+
+    nxt_val = A[nxt_pos]
+    res.append(nxt_val)
+
+    cur = nxt_val
+    cur_pos = nxt_pos
+
+print(len(res))
+print(*res)
