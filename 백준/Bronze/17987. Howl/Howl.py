@@ -1,16 +1,24 @@
-# GPT 5
+# Gemini 3.1 Pro
 import sys
-input = sys.stdin.readline
 
-fenrir = input().strip()
-n = len(fenrir)
+def solve():
+    # 펜리르의 울음소리를 읽어옵니다. (최대 1MB이므로 sys.stdin.readline 사용)
+    fenrir_howl = sys.stdin.readline().strip()
 
-# 기본 구조
-res = list("AHOW")
+    if not fenrir_howl:
+        return
 
-# 길이를 Fenrir보다 길게 만들기
-while len(res) <= n:
-    res.append('O')
-    res.append('W')
+    # 펜리르보다 긴 울음소리의 길이를 정합니다.
+    target_length = len(fenrir_howl) + 1
 
-print(''.join(res))
+    # 기본 필수 문자열 "AWH" (H 뒤에 W/A가 오면 안 되므로 W를 앞에 둠)
+    # 그 뒤를 모두 "O"로 채우면 모든 조건을 만족합니다.
+    # 최소 길이는 A, H, O, W가 다 들어가야 하므로 4 이상이어야 합니다.
+    # 하지만 펜리르의 소리가 이미 유효하므로 len+1은 항상 4 이상입니다.
+
+    result = "AWH" + "O" * (target_length - 3)
+
+    print(result)
+
+if __name__ == "__main__":
+    solve()
