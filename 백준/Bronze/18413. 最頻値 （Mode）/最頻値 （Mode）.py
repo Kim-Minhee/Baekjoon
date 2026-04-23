@@ -1,13 +1,22 @@
-# GPT 5
+# Gemini 3.1 Pro
 import sys
-input = sys.stdin.readline
+from collections import Counter
 
-N, M = map(int, input().split())
-A = list(map(int, input().split()))
+def solve():
+    # 입력을 한 번에 읽어옵니다.
+    input_data = sys.stdin.read().split()
+    if not input_data:
+        return
 
-count = [0] * (M + 1)
+    n = int(input_data[0])
+    m = int(input_data[1])
+    A = list(map(int, input_data[2:]))
 
-for x in A:
-    count[x] += 1
+    # Counter를 사용하여 배열 A에 있는 각 숫자의 등장 횟수를 셉니다.
+    counts = Counter(A)
 
-print(max(count))
+    # 등장 횟수(values) 중 가장 큰 값을 출력합니다.
+    print(max(counts.values()))
+
+if __name__ == "__main__":
+    solve()
