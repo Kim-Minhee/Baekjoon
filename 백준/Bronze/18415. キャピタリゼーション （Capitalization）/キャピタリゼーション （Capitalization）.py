@@ -1,6 +1,8 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
 
-N = input().strip()
+N = int(input())
 S = input().strip()
-print(S.replace('joi', 'JOI'))
+
+print(S.replace("joi", "JOI"))
