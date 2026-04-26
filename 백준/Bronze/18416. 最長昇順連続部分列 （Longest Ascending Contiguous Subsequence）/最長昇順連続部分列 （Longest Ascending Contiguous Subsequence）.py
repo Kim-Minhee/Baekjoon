@@ -1,15 +1,18 @@
+# GPT 5
 import sys
 input = sys.stdin.readline
 
-N = int(input().strip())
+N = int(input())
 A = list(map(int, input().split()))
 
-max_cnt, cnt = 0, 0
-for i in range(N - 1):
-    if A[i + 1] >= A[i]:
-        cnt += 1
+cur = 1
+ans = 1
+
+for i in range(1, N):
+    if A[i] >= A[i-1]:
+        cur += 1
     else:
-        max_cnt = max(max_cnt, cnt)
-        cnt = 0
-max_cnt = max(max_cnt, cnt)
-print(max_cnt + 1)
+        cur = 1
+    ans = max(ans, cur)
+
+print(ans)
