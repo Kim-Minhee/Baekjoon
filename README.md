@@ -32,10 +32,9 @@
   <img src="https://github-readme-stats.vercel.app/api?username=Kim-Minhee&show_icons=true&theme=dracula" alt="Anurag's GitHub stats">
 </div>
 
+---
 
-<!-- --- -->
+## 📚 Study Notes
+알고리즘 개념 정리는 개인 Notion에 기록하며 관리하고 있습니다.
 
-<!-- ## 📚 Study Notes
-알고리즘 핵심 개념 시각화, 테마별 풀이 회고, 그리고 오답 노트는 개인 Notion 데이터베이스에 기록하며 관리하고 있습니다.
-
-* [🔗 나의 알고리즘 학습 노션 바로가기](여기에_노션_링크를_붙여넣으세요) -->
+* [🔗 나의 알고리즘 학습 노션 바로가기](https://www.notion.so/348fe59a239f81d9a67eefabee56626c?v=352fe59a239f80b0bc5b000cd958c1b5&source=copy_link)
